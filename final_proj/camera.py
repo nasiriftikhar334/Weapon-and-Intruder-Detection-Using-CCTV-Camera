@@ -5,9 +5,10 @@ from django.conf import settings
 face_detection_videocam = cv2.CascadeClassifier(os.path.join(
 			settings.BASE_DIR,'opencv_haarcascade_data/haarcascade_frontalface_default.xml'))
 
+
 class VideoCamera(object):
 	def __init__(self):
-		self.video = cv2.VideoCapture(1)
+		self.video = cv2.VideoCapture(0)
 
 	def __del__(self):
 		self.video.release()

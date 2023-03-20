@@ -2,11 +2,10 @@ from django.shortcuts import render
 from django.http.response import StreamingHttpResponse
 from .camera import VideoCamera
 
-# Create your views here.
 import device
+# Create your views here.
 
 device_list = device.getDeviceList()
-print(device_list)
 
 def index(request):
 	return render(request, 'streamapp/home.html')
