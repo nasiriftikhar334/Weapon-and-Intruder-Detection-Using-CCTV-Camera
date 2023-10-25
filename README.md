@@ -6,4 +6,9 @@ YOLO-v3 is used for training dataset for weapons. The UI interface is created on
 # Important
 The app need threading feature to work properly. Unfortunately at the moment django does not support threading. So if someone could just convert the code to flask or some other framework that support threading would really enhance the system for real life.
 
-#I'll really appreciate any contribution in the UI or Backend.
+# I'll really appreciate any contribution in the UI or Backend.
+
+weight file for weapon detection
+https://drive.google.com/file/d/10uJEsUpQI3EmD98iwrwzbD4e19Ps-LHZ/view
+
+# Weight file taken from Manish8798
