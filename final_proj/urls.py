@@ -15,9 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import *
+from .views import index
+from detection.alert import alertstream
+from detection.views import (
+    video_feed,
+    camera_list_view,
+    camera_add_view,
+    camera_detail_view
+)
+from account.views import (
+    login_view,
+    logout_view
+)
 
 urlpatterns = [
     path('', index, name='index'),
-    path('video_feed', video_feed, name='video_feed'),
+    path('video_feed<int:cam>', video_feed, name='video_feed'),
+    path('stream/', alertstream, name='alertstream'),
+    path('admin/', admin.site.urls),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('cameras/', camera_list_view, name='camera-list'),
+    path('cameras/add/', camera_add_view, name='camera-add'),
+    path('cameras/<str:name>/', camera_detail_view, name='camera-detail'),
 ]

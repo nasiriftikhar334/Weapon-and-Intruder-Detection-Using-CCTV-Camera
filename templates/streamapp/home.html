@@ -1,9 +1,62 @@
-<html>
-  <head>
-    <title>Video Live Stream</title>
-  </head>
-  <body>
-    <h1>Video Live Stream</h1>
-    <img src="{% url 'video_feed' %}">
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+    <link rel='stylesheet' href='{% static "alert.css" %}' />
+{% endblock head %}
+
+{% block content %}
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+        <h2>Alert</h2>
+        </div>
+        <div class="modal-body">
+        <p id="altert-msg"></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn success">Allowed Once</button>
+            <button class="btn success">Allowed An Hour</button>            
+            <button class="btn danger">Alarm</button>
+        </div>
+    </div>
+  
+</div>
+
+{% for x in device_index %}
+    <img src="{% url 'video_feed' cam=x %}">
+{% endfor %}
+
+<script>
+    if(typeof(EventSource) !== "undefined") {
+        var modal = document.getElementById("myModal");
+        var allow_once = document.getElementsByClassName("btn")[0];
+        var allow_an_hour = document.getElementsByClassName("btn")[1];
+        var alarm = document.getElementsByClassName("btn")[2];
+        var source = new EventSource("stream/");
+        source.onmessage = function(event) {
+            if(event.data != '') {
+            document.getElementById("altert-msg").innerHTML += event.data + "<br>";
+            modal.style.display = "block";
+        }
+        };
+        allow_once.onclick = function() {
+        modal.style.display = "none";
+        }
+        allow_an_hour.onclick = function() {
+        modal.style.display = "none";
+        }
+        alarm.onclick = function() {
+        modal.style.display = "none";
+        }
+        } else {
+        document.getElementById("alert").innerHTML = "Sorry, your browser does not support server-sent events...";
+        }
+</script>
+
+{% endblock %}

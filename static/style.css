@@ -1,0 +1,86 @@
+:root {
+    --nav_bg: #79aec8;
+    --hover: #417690;
+    --cam_hover: #fff;
+    --nav_text: #fff;
+    --text: #417690;
+    --backround: #fff;
+}
+
+/***********Default Styles**********/
+
+* {
+  margin: 0;
+  font-family: "Roboto","Arial",sans-serif;
+  font-size: 16px;
+  color: var(--text);
+}
+
+body {
+    background-color: var(--background);
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+/***********Navbar Section Styles**********/
+
+.navSection {
+    display: block;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--nav_bg);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  color: var(--nav_text);
+  text-decoration: none;
+}
+
+li.navright {
+  float: right;
+}
+
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: var(--hover);
+}
+
+#camlist{
+  display: block;
+  text-align: left;
+  float: left;
+  margin-left: 4%;
+  margin-top: 3%;
+}
+
+#camlist li p:hover {
+  color: var(--cam_hover);
+  background-color: var(--hover);
+}
+
+h2 {
+  padding-bottom: 2%;
+  margin-bottom: 2%;
+}

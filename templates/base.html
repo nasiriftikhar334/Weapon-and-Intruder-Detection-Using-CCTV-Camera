@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weapon & Intruder detection</title>
+        <link rel='stylesheet' href='{% static "style.css" %}' />
+        {% block head %}
+        <!-- this will be replaced by js or css file links -->
+        {% endblock head %}
+    </head>
+    <body>
+        <section class="navSection">
+            <nav>
+            <ul class="navtop">
+              <li><a href='{% url "index" %}'>Live Stream</a></li>
+              <li><a href='{% url "camera-add" %}'>Add Camera</a></li>
+              <li><a href='{% url "camera-list" %}'>Cameras</a></li>
+              <li><a href='{% url "admin:index" %}'>Admin</a></li>
+              
+              <li class="navright"><a href='{% url "logout" %}'>Logout</a></li>
+              {% if request.user.is_authenticated %}
+              <li class="navright"><a href=''>{{ user.username }}</a></li>
+              {% else %}
+              <li class="navright"><a href='{% url "login" %}'>Login</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+          </section>
+        <h1>Live Stream</h1>
+        <p id="alert"></p>
+
+        {% block content %}
+        <h3>This will be replaced</h3>
+        {% endblock content %}
+
+
+        <script>
+            document.body.addEventListener("htmx:configRequest", (event)=> {
+                event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'
+            })
+        </script>
+    </body>
+</html>

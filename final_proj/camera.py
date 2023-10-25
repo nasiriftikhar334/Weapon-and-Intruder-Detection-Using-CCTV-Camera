@@ -7,8 +7,13 @@ face_detection_videocam = cv2.CascadeClassifier(os.path.join(
 
 
 class VideoCamera(object):
+<<<<<<< HEAD
 	def __init__(self):
 		self.video = cv2.VideoCapture(0)
+=======
+	def __init__(self, cam=0):
+		self.video = cv2.VideoCapture(cam)
+>>>>>>> e9ec27a5553f34ab7baa26c915f5817319ad671b
 
 	def __del__(self):
 		self.video.release()
@@ -20,10 +25,10 @@ class VideoCamera(object):
 		# video stream.
 
 		gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-		faces_detected = face_detection_videocam.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+		faces_detected = face_detection_videocam.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5)
 		for (x, y, w, h) in faces_detected:
 			cv2.rectangle(image, pt1=(x, y), pt2=(x + w, y + h), color=(255, 0, 0), thickness=2)
-		frame_flip = cv2.flip(image,1)
-		ret, jpeg = cv2.imencode('.jpg', frame_flip)
+		# frame_flip = cv2.flip(image, )
+		ret, jpeg = cv2.imencode('.jpg', image)
 		return jpeg.tobytes()
 

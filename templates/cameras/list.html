@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div id="camlist">
+    <h2>&emsp;&emsp;---&emsp;Name&emsp;---&emsp;Detection&emsp;---&emsp;Camera&emsp;---</h2>
+
+
+    <ol>
+    {% for object in object_list %}
+        {% if object.name %}
+        <div>
+            <li>
+                <a href="{{ object.get_absolute_url }}">
+                    <p>{{ object.name }} &emsp;&emsp; {{ object.detection_choice }} &emsp;&emsp; {{ object.cam_sys_name }}</p>
+                </a>
+            </li>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </ol>
+
+</div>
+
+{% endblock content %}

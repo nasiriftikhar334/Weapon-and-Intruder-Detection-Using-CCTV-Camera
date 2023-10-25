@@ -1,0 +1,70 @@
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    margin: auto;
+    left: 35%;
+    top: 2%;
+    width: 30%; /* Full width */
+    height: 20%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+  }  
+
+
+/* Modal Header */
+.modal-header {
+    padding: 8px 0px 0px 0px;
+    background-color: #b92828;
+  }
+
+.modal-header h2 {
+    font-size: 25px;
+    color: #fff;
+  }
+
+  /* Modal Body */
+.modal-body {
+    padding: 10px 8px;
+    text-align: left;
+    color: #79aec8 !important;
+}
+  
+  /* Modal Footer */
+  .modal-footer {
+    padding: 4px 12px;
+    text-align: right;
+    color: #79aec8 !important;
+    background-color: #fff;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: auto;
+    padding: 0;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 10px 25px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+
+  .btn {
+    border: none; /* Remove borders */
+    color: white; /* Add a text color */
+    padding: 7px 14px; /* Add some padding */
+    cursor: pointer; /* Add a pointer cursor on mouse-over */
+  }
+  
+  .success {background-color: #04AA6D;} /* Green */
+  .success:hover {background-color: #46a049;}
+  
+  .danger {background-color: #f44336;} /* Red */
+  .danger:hover {background: #da190b;}
+  
+  
+  /* Add Animation */
+  @keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }

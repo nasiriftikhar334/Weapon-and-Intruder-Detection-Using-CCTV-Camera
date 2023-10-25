@@ -1,24 +1,19 @@
 from django.shortcuts import render
-from django.http.response import StreamingHttpResponse
-from .camera import VideoCamera
+from detection.models import Camera
+from detection.utils import dev_list
+from django.contrib.auth.decorators import login_required
 
-import device
-# Create your views here.
 
-device_list = device.getDeviceList()
-
+@login_required(login_url='login')
 def index(request):
-	return render(request, 'streamapp/home.html')
-
-
-def gen(camera):
-	while True:
-		frame = camera.get_frame()
-		yield (b'--frame\r\n'
-				b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
-
-def video_feed(request):
-	return StreamingHttpResponse(gen(VideoCamera()),
-					content_type='multipart/x-mixed-replace; boundary=frame')
-
+	registered_cam = Camera.objects.all()
+	device_list = dev_list()
+	index_device_list = []
+	for x in registered_cam:
+		for y in device_list:
+			if x.cam_sys_name==y:
+				index_device_list.append(device_list.index(y))
+	context = {
+		'device_index': index_device_list
+	}
+	return render(request, 'streamapp/home.html', context=context)

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div style='margin-top:30px;'>
+    <form action='.' method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class='{% if field.field.required %}{{ form.required_css_class }}{%endif%}'>
+            {{ field.label_tag }} {{ field }} 
+            {% if field.errors %}
+            {{ field.errors }}  
+            {% endif %}
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button style='margin-top:10px;' type='submit' >Add Camera</button>
+    </form>
+</div>
+
+
+{% endblock content %}
